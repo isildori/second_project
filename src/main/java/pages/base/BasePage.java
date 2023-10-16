@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import static constants.Constant.TimeoutVariable.EXPLICIT_WAIT;
 import static constants.Constant.URLS.START_PAGE_URL;
+import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 public class BasePage {
     protected WebDriver driver;
@@ -60,6 +62,10 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(second)).until(d-> findElement(locator).isDisplayed());
     }
 
+
+
+
+
     public void waitElementDisplayed (String locator){
         waitElementDisplayed(locator,EXPLICIT_WAIT);
     }
@@ -75,4 +81,6 @@ public class BasePage {
             click(locator);
         }
     }
+    //ClassLoader classLoader = getClass().getClassLoader();
+    //File file = new File(classLoader.getResource("file/test.xml").getFile())
 }

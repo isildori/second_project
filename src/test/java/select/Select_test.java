@@ -37,6 +37,7 @@ public class Select_test {
         mainPage.waitElementDisplayed(locator, 20);
         mainPage.click(locator +"//div[text()='Group 1, option 2']");
         mainPage.click(locator +"//div[text()='Group 1, option 2']");
+
     }
 
 }
