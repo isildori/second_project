@@ -34,18 +34,21 @@ public class Alert {
     @Test
     public void step_01(){
         mainPage.openUrl("https://demoqa.com/alerts");
-        mainPage.click("//button[@id='alertButton']");
-        mainPage.switchToAlert();
-        mainPage.click("//button[@id='timerAlertButton']");
 
-        mainPage.switchToAlert();
-        mainPage.click("//button[@id='confirmButton']");
-        mainPage.promtAssept();
-        mainPage.getText("//span[@id='confirmResult']");
+        mainPage.alertAccept("//button[@id='alertButton']");
+
+
+        mainPage.alertAccept("//button[@id='timerAlertButton']");
+
+        mainPage.alertAccept("//button[@id='confirmButton']");
+
 
         Assert.assertTrue(mainPage.getText("//span[@id='confirmResult']").contains("You selected Ok"));
-        mainPage.click("//button[@id='confirmButton']");
-        mainPage.promtDismis();
-         Assert.assertTrue(mainPage.getText("//span[@id='confirmResult']").contains("You selected Cancel"));
+
+        mainPage.alertDismiss("//button[@id='confirmButton']");
+        Assert.assertTrue(mainPage.getText("//span[@id='confirmResult']").contains("You selected Cancel"));
+        mainPage.alertPrompt("//button[@id='promtButton']", "12345");
+        Assert.assertTrue(mainPage.getText("//span[@id='promptResult']").contains("You entered 12345"));
+
     }
 }

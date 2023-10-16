@@ -1,6 +1,7 @@
 package main_pages;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,25 +31,30 @@ public class MainPage extends BasePage {
     public void openCategoryForms(){
         openCategory("Forms");
     }
-    public void switchToAlert(){
+    public void alertAccept(String locator ){
+        driver.findElement(By.xpath(locator)).click();
          new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.alertIsPresent());
         Alert alert1 = driver.switchTo().alert();
-
         alert1.accept();
 
 
     }
-    public void promtAssept(){
-         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.alertIsPresent());
-         Alert alert2 = driver.switchTo().alert();
 
-         alert2.accept();
-    }
-     public void promtDismis(){
+
+     public void alertDismiss(String locator){
+         driver.findElement(By.xpath(locator)).click();
          new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.alertIsPresent());
          Alert alert1 = driver.switchTo().alert();
 
          alert1.dismiss();
+    }
+    public void alertPrompt(String locator, String text){
+        driver.findElement(By.xpath(locator)).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.alertIsPresent());
+        Alert alert1 = driver.switchTo().alert();
+        alert1.sendKeys(text);
+
+        alert1.accept();
     }
 }
 
